@@ -59,3 +59,15 @@ const startLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   return frames;
 };
+
+const generateRandomNumber = (min, max) => {
+  return min + Math.random() * (max - min);
+};
+
+const generateRandomInteger = range => {
+  return Math.floor(Math.random() * range);
+};
+
+const generateRandomRgbColor = () => {
+  return [generateRandomInteger(255), generateRandomInteger(255), generateRandomInteger(255)];
+};
