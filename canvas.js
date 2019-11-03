@@ -42,3 +42,20 @@ const addResize = () => {
     canvas.height = window.innerHeight;
   });
 };
+
+const startLoop = () => {
+  const now = getTime();
+  const ms = now - then;
+  let frames = 0;
+  then = now;
+  if (ms < FRAME_THRESHOLD) {
+    acc += ms;
+    while (acc >= FRAME_DURATION) {
+      frames++;
+      acc -= FRAME_DURATION;
+    }
+  }
+  meter.tick();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  return frames;
+};
