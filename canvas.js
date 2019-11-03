@@ -1,4 +1,4 @@
-/* global $ performance FPSMeter */
+/* global $ performance FPSMeter draw */
 /* eslint-disable no-unused-vars */
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -22,3 +22,23 @@ const meter = new FPSMeter({
   heat: 1,
   graph: 1
 });
+
+const addPause = () => {
+  document.addEventListener('keyup', e => {
+    if (e.keyCode === 80) {
+      if (animation === undefined) {
+        animation = window.requestAnimationFrame(draw);
+      } else {
+        window.cancelAnimationFrame(animation);
+        animation = undefined;
+      }
+    }
+  });
+};
+
+const addResize = () => {
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+};
