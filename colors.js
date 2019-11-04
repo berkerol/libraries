@@ -1,3 +1,4 @@
+/* global generateRandomInteger */
 /* eslint-disable no-unused-vars */
 let colorIndex = 16;
 const colorCodes = [[255, 30, 40], [255, 150, 20], [255, 220, 0], [0, 255, 100], [100, 255, 20], [50, 200, 200], [120, 220, 255], [80, 180, 255], [220, 120, 255], [255, 100, 150], [240, 20, 200], [140, 140, 140], [170, 170, 170], [200, 200, 200], [255, 0, 0]];
@@ -17,3 +18,7 @@ for (const i in colorNames) {
     dropdown.insertBefore(div, custom);
   }
 }
+
+const generateRandomColor = () => {
+  return colorCodes[generateRandomInteger(colorCodes.length - 1)];
+};
