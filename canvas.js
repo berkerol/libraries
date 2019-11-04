@@ -78,6 +78,10 @@ const isIntersectingRectangleWithCircle = (rect, width, height, circle, radius) 
   return dX ** 2 + dY ** 2 <= radius ** 2;
 };
 
+const getDistance = (p1, p2) => {
+  return Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+};
+
 const generateRandomNumber = (min, max) => {
   return min + Math.random() * (max - min);
 };
