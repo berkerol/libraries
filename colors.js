@@ -19,6 +19,12 @@ for (const i in colorNames) {
   }
 }
 
+const addCustomColor = () => {
+  document.getElementById('customColor').addEventListener('change', function () {
+    colorCodes[colorCodes.length - 1] = this.value.match(/[A-Za-z0-9]{2}/g).map(v => parseInt(v, 16));
+  });
+};
+
 const generateRandomColor = () => {
   return colorCodes[generateRandomInteger(colorCodes.length - 1)];
 };
