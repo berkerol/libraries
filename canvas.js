@@ -60,6 +60,20 @@ const startLoop = () => {
   return frames;
 };
 
+const isIntersectingRectangleWithCircle = (rect, width, height, circle, radius) => {
+  const distX = Math.abs(circle.x - rect.x - width / 2);
+  const distY = Math.abs(circle.y - rect.y - height / 2);
+  if (distX > (width / 2 + radius) || distY > (height / 2 + radius)) {
+    return false;
+  }
+  if (distX <= (width / 2) || distY <= (height / 2)) {
+    return true;
+  }
+  const dX = distX - width / 2;
+  const dY = distY - height / 2;
+  return dX ** 2 + dY ** 2 <= radius ** 2;
+};
+
 const generateRandomNumber = (min, max) => {
   return min + Math.random() * (max - min);
 };
