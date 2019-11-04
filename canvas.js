@@ -60,6 +60,10 @@ const startLoop = () => {
   return frames;
 };
 
+const isIntersectingRectangleWithRectangle = (rect1, width1, height1, rect2, width2, height2) => {
+  return rect2.x < rect1.x + width1 && rect2.x + width2 > rect1.x && rect2.y < rect1.y + height1 && rect2.y + height2 > rect1.y;
+};
+
 const isIntersectingRectangleWithCircle = (rect, width, height, circle, radius) => {
   const distX = Math.abs(circle.x - rect.x - width / 2);
   const distY = Math.abs(circle.y - rect.y - height / 2);
