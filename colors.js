@@ -19,6 +19,29 @@ for (const i in colorNames) {
   }
 }
 
+const addDropdownListener = objects => {
+  document.querySelectorAll('#change-color .dropdown-item').forEach(e => {
+    e.addEventListener('click', function () {
+      document.getElementById('change-color-text').innerText = this.innerText;
+      colorIndex = +this.dataset.value;
+      if (colorIndex === colorCodes.length + 2 || colorIndex === colorCodes.length + 1) {
+        for (const o of objects) {
+          o.color = generateRandomColor();
+        }
+      } else if (colorIndex === colorCodes.length) {
+        const color = generateRandomColor();
+        for (const o of objects) {
+          o.color = color;
+        }
+      } else {
+        for (const o of objects) {
+          o.color = colorCodes[colorIndex];
+        }
+      }
+    });
+  });
+};
+
 const addCustomColor = () => {
   document.getElementById('customColor').addEventListener('change', function () {
     colorCodes[colorCodes.length - 1] = this.value.match(/[A-Za-z0-9]{2}/g).map(v => parseInt(v, 16));
