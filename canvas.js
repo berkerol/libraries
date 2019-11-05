@@ -76,6 +76,21 @@ const drawLine = (x1, y1, x2, y2, color) => {
   ctx.stroke();
 };
 
+const drawRoundRect = (x, y, width, height, arcX, arcY, color) => {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x + arcX, y);
+  ctx.lineTo(x + width - arcX, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + arcY);
+  ctx.lineTo(x + width, y + height - arcY);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - arcX, y + height);
+  ctx.lineTo(x + arcX, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - arcY);
+  ctx.lineTo(x, y + arcY);
+  ctx.quadraticCurveTo(x, y, x + arcX, y);
+  ctx.fill();
+};
+
 const isIntersectingRectangleWithRectangle = (rect1, width1, height1, rect2, width2, height2) => {
   return rect2.x < rect1.x + width1 && rect2.x + width2 > rect1.x && rect2.y < rect1.y + height1 && rect2.y + height2 > rect1.y;
 };
