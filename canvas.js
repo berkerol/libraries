@@ -60,6 +60,14 @@ const startLoop = () => {
   return frames;
 };
 
+const drawCircle = (x, y, radius, color) => {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.arc(x, y, radius, 0, 2 * Math.PI);
+  ctx.fill();
+};
+
 const isIntersectingRectangleWithRectangle = (rect1, width1, height1, rect2, width2, height2) => {
   return rect2.x < rect1.x + width1 && rect2.x + width2 > rect1.x && rect2.y < rect1.y + height1 && rect2.y + height2 > rect1.y;
 };
