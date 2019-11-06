@@ -60,25 +60,31 @@ const startLoop = () => {
   return frames;
 };
 
-const drawCircle = (x, y, radius, color) => {
-  ctx.fillStyle = color;
-  ctx.beginPath();
+const drawCircle = (x, y, radius) => {
   ctx.moveTo(x, y);
   ctx.arc(x, y, radius, 0, 2 * Math.PI);
+};
+
+const paintCircle = (x, y, radius, color) => {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  drawCircle(x, y, radius);
   ctx.fill();
 };
 
-const drawLine = (x1, y1, x2, y2, color) => {
-  ctx.strokeStyle = color;
-  ctx.beginPath();
+const drawLine = (x1, y1, x2, y2) => {
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
+};
+
+const paintLine = (x1, y1, x2, y2, color) => {
+  ctx.strokeStyle = color;
+  ctx.beginPath();
+  drawLine(x1, y1, x2, y2);
   ctx.stroke();
 };
 
-const drawRoundRect = (x, y, width, height, arcX, arcY, color) => {
-  ctx.fillStyle = color;
-  ctx.beginPath();
+const drawRoundRect = (x, y, width, height, arcX, arcY) => {
   ctx.moveTo(x + arcX, y);
   ctx.lineTo(x + width - arcX, y);
   ctx.quadraticCurveTo(x + width, y, x + width, y + arcY);
@@ -88,6 +94,12 @@ const drawRoundRect = (x, y, width, height, arcX, arcY, color) => {
   ctx.quadraticCurveTo(x, y + height, x, y + height - arcY);
   ctx.lineTo(x, y + arcY);
   ctx.quadraticCurveTo(x, y, x + arcX, y);
+};
+
+const paintRoundRect = (x, y, width, height, arcX, arcY, color) => {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  drawRoundRect(x, y, width, height, arcX, arcY);
   ctx.fill();
 };
 
