@@ -23,6 +23,14 @@ const meter = new FPSMeter({
   graph: 1
 });
 
+const label = {
+  font: '24px Arial',
+  color: '#0095DD',
+  margin: 30,
+  left: 20,
+  right: canvas.width - 120
+};
+
 const addPause = () => {
   document.addEventListener('keyup', e => {
     if (e.keyCode === 80) {
