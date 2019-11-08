@@ -1,4 +1,4 @@
-/* global $ performance FPSMeter draw */
+/* global $ performance FPSMeter */
 /* eslint-disable no-unused-vars */
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -11,6 +11,7 @@ const FRAME_DURATION = 1000 / 58;
 let then = getTime();
 let acc = 0;
 let animation;
+let gameLoop;
 if (typeof jQuery !== 'undefined' && typeof $.fn.modal !== 'undefined') {
   FPSMeter.theme.colorful.container.height = '40px';
 }
@@ -35,7 +36,7 @@ const addPause = () => {
   document.addEventListener('keyup', e => {
     if (e.keyCode === 80) {
       if (animation === undefined) {
-        animation = window.requestAnimationFrame(draw);
+        animation = window.requestAnimationFrame(gameLoop);
       } else {
         window.cancelAnimationFrame(animation);
         animation = undefined;
@@ -51,7 +52,7 @@ const addResize = () => {
   });
 };
 
-const startLoop = () => {
+const loop = gameLogic => {
   const now = getTime();
   const ms = now - then;
   let frames = 0;
@@ -65,7 +66,13 @@ const startLoop = () => {
   }
   meter.tick();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  return frames;
+  gameLogic(frames);
+  if (gameLoop === undefined) {
+    gameLoop = () => {
+      loop(gameLogic);
+    };
+  }
+  animation = window.requestAnimationFrame(gameLoop);
 };
 
 const drawCircle = (x, y, radius) => {
