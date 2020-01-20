@@ -136,6 +136,67 @@ const createHeaderMenuRow = (rowClass, buttonClass, headerElements, buttonElemen
   return row;
 };
 
+const createModalButton = (buttonGroup, index) => {
+  const settingsButton = buttonGroup.children[index];
+  settingsButton.removeAttribute('onclick');
+  settingsButton.setAttribute('data-toggle', 'modal');
+  settingsButton.setAttribute('data-target', '#settings');
+  return buttonGroup;
+};
+
+const createModal = modalElements => {
+  const modalContent = document.createElement('div');
+  modalContent.className = 'modal-content';
+  const modalHeader = document.createElement('div');
+  modalHeader.className = 'modal-header';
+  const modalTitle = document.createElement('h4');
+  modalTitle.className = 'modal-title';
+  modalTitle.innerHTML = 'Settings';
+  modalHeader.appendChild(modalTitle);
+  const modalClose = document.createElement('button');
+  modalClose.type = 'button';
+  modalClose.className = 'close';
+  modalClose.setAttribute('data-dismiss', 'modal');
+  modalClose.innerHTML = '<span>&times;</span>';
+  modalHeader.appendChild(modalClose);
+  modalContent.appendChild(modalHeader);
+  const form = document.createElement('form');
+  for (const modalElement of modalElements) {
+    const row = document.createElement('div');
+    row.className = 'form-row';
+    for (const colElement of modalElement) {
+      const colElementType = colElement[colElement.length - 1];
+      if (colElementType === 'text') {
+        row.appendChild(createTextCol('form-group col', ...colElement));
+      } else if (colElementType === 'number') {
+        row.appendChild(createNumberCol('form-group col', ...colElement));
+      } else if (colElementType === 'check') {
+        row.appendChild(createCheckboxCol('form-group col my-auto', ...colElement));
+      }
+    }
+    form.appendChild(row);
+  }
+  const modalBody = document.createElement('div');
+  modalBody.className = 'modal-body';
+  modalBody.appendChild(form);
+  modalContent.appendChild(modalBody);
+  const modalFooter = document.createElement('div');
+  modalFooter.className = 'modal-footer';
+  const modalSave = createButton('primary', 'save()', 'a', 'save', 'S<u>a</u>ve');
+  modalSave.setAttribute('data-dismiss', 'modal');
+  modalFooter.appendChild(modalSave);
+  modalContent.appendChild(modalFooter);
+  const modalDialog = document.createElement('div');
+  modalDialog.className = 'modal-dialog';
+  modalDialog.appendChild(modalContent);
+  const modal = document.createElement('div');
+  modal.className = 'modal fade';
+  modal.id = 'settings';
+  modal.tabIndex = '-1';
+  modal.appendChild(modalDialog);
+  document.body.insertBefore(modal, document.body.children[0]);
+};
+
 const write = (className, text) => {
   const child = document.createElement('div');
   child.className = className + ' alert-dismissible fade show';
