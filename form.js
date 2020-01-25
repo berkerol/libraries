@@ -197,18 +197,18 @@ const createModal = modalElements => {
   document.body.insertBefore(modal, document.body.children[0]);
 };
 
-const write = (className, text) => {
+const createAlert = (type, text) => {
   const child = document.createElement('div');
-  child.className = className + ' alert-dismissible fade show';
+  child.className = `alert alert-${type} alert-dismissible fade show`;
   child.innerHTML = '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + text;
   const parent = document.getElementById('text');
   parent.insertBefore(child, parent.children[0]);
 };
 
-const exit = (className, text) => {
-  write(className, text);
+const exit = (type, text) => {
+  createAlert(type, text);
   locked = true;
-  write('alert alert-info', 'Restart the game!');
+  createAlert('info', 'Restart the game!');
 };
 
 const keyDownHandler = e => {
