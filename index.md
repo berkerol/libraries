@@ -24,7 +24,7 @@ Libraries for common functionalities of my other repositories.
 * Bootstrap Form: [form.js](form.js)
   * Input Labels; Text, Number and Checkbox Inputs
   * Buttons, Button Groups and Modal Toggle Buttons
-  * Modals and Alerts
+  * Dropdowns, Modals and Alerts
   * Enter Key and Reset Handlers
 * Market: [market.js](market.js)
   * Properties
