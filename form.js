@@ -136,6 +136,45 @@ const createHeaderMenuRow = (rowClass, buttonClass, headerElements, buttonElemen
   return row;
 };
 
+const createDropdownItem = (dataValue, innerHTML) => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'dropdown-item';
+  button.setAttribute('data-value', dataValue);
+  button.innerHTML = innerHTML;
+  return button;
+};
+
+const createDropdownMenu = (id, buttonElements) => {
+  const menu = document.createElement('div');
+  menu.className = 'dropdown-menu';
+  menu.id = id;
+  for (const buttonElement of buttonElements) {
+    menu.appendChild(createDropdownItem(...buttonElement));
+  }
+  return menu;
+};
+
+const createDropdownCol = (buttonElement, id, buttonElements) => {
+  const col = document.createElement('div');
+  col.className = 'btn-group btn-group-lg';
+  const button = createButton(...buttonElement);
+  button.removeAttribute('onclick');
+  button.setAttribute('data-toggle', 'dropdown');
+  col.appendChild(button);
+  col.appendChild(createDropdownMenu(id, buttonElements));
+  return col;
+};
+
+const createDropdownRow = dropdownElements => {
+  const row = document.createElement('div');
+  row.className = 'btn-group btn-group-lg btn-group-center';
+  for (const dropdownElement of dropdownElements) {
+    row.appendChild(createDropdownCol(...dropdownElement));
+  }
+  return row;
+};
+
 const createModalButton = (buttonGroup, index) => {
   const settingsButton = buttonGroup.children[index];
   settingsButton.removeAttribute('onclick');
