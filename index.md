@@ -7,6 +7,7 @@ Libraries for common functionalities of my other repositories.
 ```html
 <script src="https://berkerol.github.io/libraries/canvas.js"></script>
 <script src="https://berkerol.github.io/libraries/form.js"></script>
+<script src="https://berkerol.github.io/libraries/sky.js"></script>
 <script src="https://berkerol.github.io/libraries/market.js"></script>
 <script src="https://berkerol.github.io/libraries/particle.js"></script>
 <script src="https://berkerol.github.io/libraries/colors.js"></script>
@@ -26,6 +27,10 @@ Libraries for common functionalities of my other repositories.
   * Buttons, Button Groups and Modal Toggle Buttons
   * Dropdowns, Modals and Alerts
   * Enter Key and Reset Handlers
+* Sky: [sky.js](sky.js)
+  * Properties
+  * Method for Painting
+  * Resize Handler
 * Market: [market.js](market.js)
   * Properties
   * Methods for Updating Properties
