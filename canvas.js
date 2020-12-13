@@ -154,3 +154,16 @@ const generateRandomInteger = range => {
 const generateRandomRgbColor = () => {
   return [generateRandomInteger(255), generateRandomInteger(255), generateRandomInteger(255)];
 };
+
+const generateRandomCharCode = (caseSensitive) => {
+  const codes = [];
+  if (caseSensitive) {
+    for (let i = 0; i < 26; i++) {
+      codes.push(65 + i);
+    }
+  }
+  for (let i = 0; i < 26; i++) {
+    codes.push(97 + i);
+  }
+  return codes[generateRandomInteger(codes.length)];
+};

@@ -21,7 +21,7 @@ Libraries for common functionalities of my other repositories.
   * Game Loop
   * Drawing and Painting
   * Collision Detection
-  * Generating Random Numbers and Colors
+  * Generating Random Numbers, Colors and Character Codes
 * Bootstrap Form: [form.js](form.js)
   * Input Labels; Text, Number and Checkbox Inputs
   * Buttons, Button Groups and Modal Toggle Buttons
