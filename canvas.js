@@ -1,4 +1,4 @@
-/* global $ performance FPSMeter */
+/* global performance FPSMeter */
 /* eslint-disable no-unused-vars */
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -12,8 +12,11 @@ let then = getTime();
 let acc = 0;
 let animation;
 let gameLoop;
-if (typeof jQuery !== 'undefined' && typeof $.fn.modal !== 'undefined') {
-  FPSMeter.theme.colorful.container.height = '40px';
+for (const element of window.document.getElementsByTagName('link')) {
+  if (element.href.includes('bootstrap')) {
+    FPSMeter.theme.colorful.container.height = '40px';
+    break;
+  }
 }
 const meter = new FPSMeter({
   left: canvas.width - 130 + 'px',
