@@ -9,7 +9,7 @@ for (const i in colorNames) {
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'dropdown-item';
-  button.setAttribute('data-value', i);
+  button.setAttribute('data-bs-value', i);
   button.innerHTML = colorNames[i];
   dropdown.insertBefore(button, custom);
   if (i === '2' || i === '5' || i === '7' || i === '10' || i === '13') {
@@ -23,7 +23,7 @@ const addDropdownListener = objects => {
   document.querySelectorAll('#change-color .dropdown-item').forEach(e => {
     e.addEventListener('click', function () {
       document.getElementById('change-color-text').innerText = this.innerText;
-      colorIndex = +this.dataset.value;
+      colorIndex = +this.dataset.bsValue;
       if (colorIndex === colorCodes.length + 2 || colorIndex === colorCodes.length + 1) {
         for (const o of objects) {
           o.color = generateRandomColor();

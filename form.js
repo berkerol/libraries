@@ -3,6 +3,7 @@
 
 const createLabel = (htmlFor, innerHTML) => {
   const label = document.createElement('label');
+  label.className = 'form-label';
   label.htmlFor = htmlFor;
   label.innerHTML = innerHTML;
   return label;
@@ -140,7 +141,7 @@ const createDropdownItem = (dataValue, innerHTML) => {
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'dropdown-item';
-  button.setAttribute('data-value', dataValue);
+  button.setAttribute('data-bs-value', dataValue);
   button.innerHTML = innerHTML;
   return button;
 };
@@ -160,7 +161,7 @@ const createDropdownCol = (buttonElement, id, buttonElements) => {
   col.className = 'btn-group btn-group-lg';
   const button = createButton(...buttonElement);
   button.removeAttribute('onclick');
-  button.setAttribute('data-toggle', 'dropdown');
+  button.setAttribute('data-bs-toggle', 'dropdown');
   col.appendChild(button);
   col.appendChild(createDropdownMenu(id, buttonElements));
   return col;
@@ -178,8 +179,8 @@ const createDropdownRow = dropdownElements => {
 const createModalButton = (buttonGroup, index) => {
   const settingsButton = buttonGroup.children[index];
   settingsButton.removeAttribute('onclick');
-  settingsButton.setAttribute('data-toggle', 'modal');
-  settingsButton.setAttribute('data-target', '#settings');
+  settingsButton.setAttribute('data-bs-toggle', 'modal');
+  settingsButton.setAttribute('data-bs-target', '#settings');
   return buttonGroup;
 };
 
@@ -194,23 +195,22 @@ const createModal = modalElements => {
   modalHeader.appendChild(modalTitle);
   const modalClose = document.createElement('button');
   modalClose.type = 'button';
-  modalClose.className = 'close';
-  modalClose.setAttribute('data-dismiss', 'modal');
-  modalClose.innerHTML = '<span>&times;</span>';
+  modalClose.className = 'btn-close';
+  modalClose.setAttribute('data-bs-dismiss', 'modal');
   modalHeader.appendChild(modalClose);
   modalContent.appendChild(modalHeader);
   const form = document.createElement('form');
   for (const modalElement of modalElements) {
     const row = document.createElement('div');
-    row.className = 'form-row';
+    row.className = 'row';
     for (const colElement of modalElement) {
       const colElementType = colElement[colElement.length - 1];
       if (colElementType === 'text') {
-        row.appendChild(createTextCol('form-group col', ...colElement));
+        row.appendChild(createTextCol('col mb-3', ...colElement));
       } else if (colElementType === 'number') {
-        row.appendChild(createNumberCol('form-group col', ...colElement));
+        row.appendChild(createNumberCol('col mb-3', ...colElement));
       } else if (colElementType === 'check') {
-        row.appendChild(createCheckboxCol('form-group col my-auto', ...colElement));
+        row.appendChild(createCheckboxCol('col my-auto', ...colElement));
       }
     }
     form.appendChild(row);
@@ -222,7 +222,7 @@ const createModal = modalElements => {
   const modalFooter = document.createElement('div');
   modalFooter.className = 'modal-footer';
   const modalSave = createButton('primary', 'save()', 'a', 'save', 'S<u>a</u>ve');
-  modalSave.setAttribute('data-dismiss', 'modal');
+  modalSave.setAttribute('data-bs-dismiss', 'modal');
   modalFooter.appendChild(modalSave);
   modalContent.appendChild(modalFooter);
   const modalDialog = document.createElement('div');
@@ -239,7 +239,7 @@ const createModal = modalElements => {
 const createAlert = (type, text) => {
   const child = document.createElement('div');
   child.className = `alert alert-${type} alert-dismissible fade show`;
-  child.innerHTML = '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + text;
+  child.innerHTML = '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>' + text;
   const parent = document.getElementById('text');
   parent.insertBefore(child, parent.children[0]);
 };
