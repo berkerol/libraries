@@ -1,6 +1,7 @@
 # Libraries
 
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=berkerol_libraries&metric=alert_status)](https://sonarcloud.io/dashboard?id=berkerol_libraries)
+[![CI](https://github.com/berkerol/libraries/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/berkerol/libraries/actions/workflows/lint.yml)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/berkerol/libraries/issues)
 [![semistandard](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard)
 [![ECMAScript](https://img.shields.io/badge/ECMAScript-latest-brightgreen.svg)](https://www.ecma-international.org/ecma-262)
@@ -46,6 +47,10 @@ Libraries for common functionalities of my other repositories.
   * Methods for Painting, Creating and Processing
 * Colors: [colors.js](colors.js)
   * Dropdown for Color Selection
+
+## Continous Integration
+
+It is setup using GitHub Actions in `.github/workflows/lint.yml`
 
 ## Contribution
 
