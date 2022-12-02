@@ -118,25 +118,6 @@ const createButtonGroupRow = (rowClass, buttonGroupClass, buttonElements) => {
   return row;
 };
 
-const createMenuRow = (rowClass, numberClass, buttonClass, numberElement, buttonElements) => {
-  const row = document.createElement('div');
-  row.className = rowClass;
-  row.appendChild(createNumberCol(numberClass, ...numberElement));
-  row.appendChild(createButtonGroupRow(buttonClass, 'btn-group', buttonElements));
-  return row;
-};
-
-const createHeaderMenuRow = (rowClass, buttonClass, headerElements, buttonElements) => {
-  const row = document.createElement('div');
-  row.className = rowClass;
-  const header = document.createElement(headerElements[0]);
-  header.className = headerElements[1];
-  header.innerHTML = headerElements[2];
-  row.appendChild(header);
-  row.appendChild(createButtonGroup(buttonClass, buttonElements));
-  return row;
-};
-
 const createDropdownItem = (dataValue, innerHTML) => {
   const button = document.createElement('button');
   button.type = 'button';
@@ -172,6 +153,22 @@ const createDropdownRow = dropdownElements => {
   row.className = 'btn-group btn-group-lg btn-group-center';
   for (const dropdownElement of dropdownElements) {
     row.appendChild(createDropdownCol('btn-group btn-group-lg', ...dropdownElement));
+  }
+  return row;
+};
+
+const createElement = (tagName, innerHTML, className) => {
+  const element = document.createElement(tagName);
+  element.innerHTML = innerHTML;
+  element.className = className;
+  return element;
+};
+
+const createRow = (rowClass, cols) => {
+  const row = document.createElement('div');
+  row.className = rowClass;
+  for (const col of cols) {
+    row.appendChild(col);
   }
   return row;
 };
