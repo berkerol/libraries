@@ -156,9 +156,9 @@ const createDropdownMenu = (id, buttonElements) => {
   return menu;
 };
 
-const createDropdownCol = (buttonElement, id, buttonElements) => {
+const createDropdownCol = (className, buttonElement, id, buttonElements) => {
   const col = document.createElement('div');
-  col.className = 'btn-group btn-group-lg';
+  col.className = className;
   const button = createButton(...buttonElement);
   button.removeAttribute('onclick');
   button.setAttribute('data-bs-toggle', 'dropdown');
@@ -171,7 +171,7 @@ const createDropdownRow = dropdownElements => {
   const row = document.createElement('div');
   row.className = 'btn-group btn-group-lg btn-group-center';
   for (const dropdownElement of dropdownElements) {
-    row.appendChild(createDropdownCol(...dropdownElement));
+    row.appendChild(createDropdownCol('btn-group btn-group-lg', ...dropdownElement));
   }
   return row;
 };
