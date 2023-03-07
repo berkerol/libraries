@@ -160,7 +160,9 @@ const createDropdownRow = dropdownElements => {
 const createElement = (tagName, innerHTML, className) => {
   const element = document.createElement(tagName);
   element.innerHTML = innerHTML;
-  element.className = className;
+  if (className) {
+    element.className = className;
+  }
   return element;
 };
 
