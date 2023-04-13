@@ -157,6 +157,32 @@ const createDropdownRow = dropdownElements => {
   return row;
 };
 
+const createDatalist = (inputId, id, options) => {
+  document.getElementById(inputId).setAttribute('list', id);
+  const datalist = document.createElement('datalist');
+  datalist.id = id;
+  for (let i = options.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [options[i], options[j]] = [options[j], options[i]];
+  }
+  for (const option of options) {
+    const element = document.createElement('option');
+    element.value = option;
+    datalist.appendChild(element);
+  }
+  return datalist;
+};
+
+const deleteOptionFromDatalist = (id, option) => {
+  const datalist = document.getElementById(id);
+  for (const element of datalist.children) {
+    if (element.value === option) {
+      datalist.removeChild(element);
+      return;
+    }
+  }
+};
+
 const createElement = (tagName, innerHTML, className) => {
   const element = document.createElement(tagName);
   element.innerHTML = innerHTML;
