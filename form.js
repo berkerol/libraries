@@ -66,20 +66,26 @@ const createCheckboxInput = (id, accessKey) => {
   input.type = 'checkbox';
   input.className = 'form-check-input';
   input.id = id;
-  input.accessKey = accessKey;
+  if (accessKey !== undefined) {
+    input.accessKey = accessKey;
+  }
   return input;
 };
 
-const createCheckboxCol = (className, innerHTML, id, accessKey) => {
-  const innerCol = document.createElement('div');
-  innerCol.className = 'form-check';
-  innerCol.appendChild(createCheckboxInput(id, accessKey));
+const createCheckboxDiv = (innerHTML, id, accessKey) => {
+  const div = document.createElement('div');
+  div.className = 'form-check';
+  div.appendChild(createCheckboxInput(id, accessKey));
   const label = createLabel(id, innerHTML);
   label.className = 'form-check-label';
-  innerCol.appendChild(label);
+  div.appendChild(label);
+  return div;
+};
+
+const createCheckboxCol = (className, innerHTML, id, accessKey) => {
   const col = document.createElement('div');
   col.className = className;
-  col.appendChild(innerCol);
+  col.appendChild(createCheckboxDiv(innerHTML, id, accessKey));
   return col;
 };
 
@@ -155,6 +161,28 @@ const createDropdownRow = dropdownElements => {
     row.appendChild(createDropdownCol('btn-group btn-group-lg', ...dropdownElement));
   }
   return row;
+};
+
+const createDropdownCheckboxMenu = (id, buttonElements) => {
+  const menu = document.createElement('div');
+  menu.className = 'dropdown-menu';
+  menu.id = id;
+  for (const buttonElement of buttonElements) {
+    menu.appendChild(createCheckboxDiv(buttonElement, buttonElement, undefined));
+  }
+  return menu;
+};
+
+const createDropdownCheckbox = (className, buttonElement, id, buttonElements) => {
+  const col = document.createElement('div');
+  col.className = className;
+  const button = createButton(...buttonElement);
+  button.removeAttribute('onclick');
+  button.setAttribute('data-bs-toggle', 'dropdown');
+  button.setAttribute('data-bs-auto-close', 'outside');
+  col.appendChild(button);
+  col.appendChild(createDropdownCheckboxMenu(id, buttonElements));
+  return col;
 };
 
 const createDatalist = (inputId, id, options) => {
@@ -236,6 +264,8 @@ const createModal = modalElements => {
         row.appendChild(createNumberCol('col mb-3', ...colElement));
       } else if (colElementType === 'check') {
         row.appendChild(createCheckboxCol('col my-auto', ...colElement));
+      } else if (colElementType === 'dropdown-check') {
+        row.appendChild(createDropdownCheckbox('dropdown', ...colElement));
       }
     }
     form.appendChild(row);
